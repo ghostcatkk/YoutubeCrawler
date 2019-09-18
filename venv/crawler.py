@@ -16,8 +16,8 @@ headers = {
           '_nRe4mMKYuLu5Z8M:QUQ3MjNmeUhGVG1oZVo2SkZtTzFaVDZxdXBQYTRSOC1CNDBiNXJfdTljSHQycldWS05GTWdJcFJya1p5RUhjdnh'
           'EajN6VS05VmNYZDV4WlhtSTlaTXpHcFltT2F1Q0syTEIzTzJfdmdOVzVfV2J0XzlPeV9zRzBSd0FCTHBfbFNVUWtnWkRORVk4aGJFTjVQVkpNd'
           'E5GZEt4ajVQMTFBbnpaOW9yZVh6c0wyNGJWQjFrd1pkdVNB; s_gl=ca02b225c88e6fda0cbe664706f57e38cwIAAABUVw==; PREF=f1='
-          '50000000&f4=4000000&f5=30&al=zh-CN+en-SG; SIDCC=AN0-TYvrADoJ9K6Kzq1p-FO8i8vqkR0KV4ND6S0x-YQSUO3JikyOC_R3CTevp7LM9VN3NEQnZw',0
-'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 S'
+          '50000000&f4=4000000&f5=30&al=zh-CN+en-SG; SIDCC=AN0-TYvrADoJ9K6Kzq1p-FO8i8vqkR0KV4ND6S0x-YQSUO3JikyOC_R3CTevp7LM9VN3NEQnZw',
+          'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 S'
 }
 
 addon = "&ratebyte = yes"
@@ -95,9 +95,12 @@ def headless(url):
                               options=chrome_options)
     driver.get(url)
     global title
-    title = driver.title
+    title = re.sub(r' - YouTube', "", driver.title)
+    print(title)
 
 
 if __name__ == '__main__':
-    crawl("https://www.youtube.com/watch?v=67MwE9pWTKQ&list=RD67MwE9pWTKQ&start_radio=1")
+    url = "https://www.youtube.com/watch?v=67MwE9pWTKQ&list=RD67MwE9pWTKQ&start_radio=1"
+    #crawl(url)
+    headless(url)
     print("done!")
